@@ -8,12 +8,13 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
+import { useNavigation } from "@react-navigation/native";
 
-const LoginScreen = ({ navigation }) => {
+const LoginScreen = () => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
-
+  const navigation = useNavigation();
   const showPassword = () => {
     setShow(!show);
   };
@@ -23,7 +24,7 @@ const LoginScreen = ({ navigation }) => {
       .then((userCredential) => {
         alert("User Login successfully");
 
-        navigation.replace("HomeScreen");
+        navigation.navigate("HomeScreen");
       })
       .catch((error) => {
         const errorCode = error.code;
